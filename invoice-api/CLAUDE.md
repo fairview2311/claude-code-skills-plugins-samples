@@ -48,8 +48,3 @@ Report findings as a list grouped by "Must fix", "Should fix", and "Nice to have
 When I ask to add a tax region, add it to `config/tax-rates.json` with the
 rate as a decimal, add a test in `test/invoices.test.ts`, and remind me to get
 Finance to approve it.
-
-## Explaining an endpoint
-
-When I ask how an endpoint works, read `src/app.ts` and the matching tests,
-then explain it.
