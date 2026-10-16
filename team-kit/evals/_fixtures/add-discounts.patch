@@ -1,0 +1,43 @@
+From 5f451e586f36aabdf2a74bb7f9471cf412e50716 Mon Sep 17 00:00:00 2001
+From: alex-smith <test@example.com>
+Date: Sat, 10 Oct 2026 00:03:21 +0900
+Subject: [PATCH] Add invoice discounts
+
+---
+ invoice-api/config/tax-rates.json |  2 +-
+ invoice-api/src/app.ts            | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/invoice-api/config/tax-rates.json b/invoice-api/config/tax-rates.json
+index 55a82ca..92e5ba9 100644
+--- a/invoice-api/config/tax-rates.json
++++ b/invoice-api/config/tax-rates.json
+@@ -1 +1 @@
+-{ "US-CA": 0.0725, "US-NY": 0.04, "US-TX": 0.0625, "US-WA": 0.065 }
++{ "US-CA": 0.0725, "US-NY": 0.04, "US-TX": 0.0625, "US-WA": 0.065, "US-OR": 0 }
+diff --git a/invoice-api/src/app.ts b/invoice-api/src/app.ts
+index 7dbaa58..efe8c98 100644
+--- a/invoice-api/src/app.ts
++++ b/invoice-api/src/app.ts
+@@ -40,3 +40,18 @@ app.post('/invoices/:id/send', (req, res) => {
+   }
+   res.json(invoice);
+ });
++
++app.post('/invoices/:id/discount', (req, res) => {
++  const invoice = getInvoice(req.params.id);
++  if (!invoice) {
++    res.status(404).send('not found');
++    return;
++  }
++  const discount = req.body.discountDollars * 1.0;
++  invoice.items.push({
++    description: 'Discount',
++    quantity: 1,
++    unitPriceCents: -discount * 100,
++  });
++  res.json({ ...invoice, ...calculateTotals(invoice) });
++});
+-- 
+2.55.0
+
