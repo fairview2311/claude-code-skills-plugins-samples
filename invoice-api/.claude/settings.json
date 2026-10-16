@@ -5,7 +5,8 @@
         "source": "github",
         "repo": "fairview2311/claude-code-skills-plugins-samples",
         "ref": "solutions"
-      }
+      },
+      "autoUpdate": true
     }
   },
   "enabledPlugins": {

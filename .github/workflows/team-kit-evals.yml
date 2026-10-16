@@ -1,0 +1,58 @@
+name: team-kit evals
+
+on:
+  pull_request:
+    paths:
+      - "team-kit/**"
+  workflow_dispatch:
+
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install the sandbox packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bubblewrap socat
+
+      - name: Let bubblewrap create user namespaces
+        run: |
+          key=kernel.apparmor_restrict_unprivileged_userns
+          if [ "$(sysctl -n "$key" 2>/dev/null)" = "1" ]; then
+            printf '%s\n' 'abi <abi/4.0>,' \
+              'include <tunables/global>' \
+              'profile bwrap /usr/bin/bwrap flags=(unconfined) {' \
+              '  userns,' \
+              '  include if exists <local/bwrap>' \
+              '}' | sudo tee /etc/apparmor.d/bwrap > /dev/null
+            sudo systemctl reload apparmor
+          fi
+
+      - name: Install Claude Code
+        run: |
+          curl -fsSL https://claude.ai/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Run the evals
+        working-directory: team-kit
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: >
+          claude plugin eval . --trust-plugin --scaffold --no-publish
+          -j 4 --threshold 0.66 --max-cost-usd 10
+          --model claude-sonnet-5-5 --judge-model claude-sonnet-5-5
+          --allow-tools Edit Write "Bash(git diff *)" "Bash(node *)"
+
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: eval-report
+          path: team-kit/evals/results/

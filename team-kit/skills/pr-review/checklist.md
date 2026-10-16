@@ -11,6 +11,8 @@ Check every item. A "Must fix" finding blocks the merge.
   that can produce fractions of a cent.
 - **Tax table.** Any change to `config/tax-rates.json` must be flagged
   for Finance, even if it looks harmless.
+- **Secrets.** No keys, tokens, or passwords in code, tests, or
+  fixtures. Values from `.env` stay in `.env`.
 
 ## Should fix
 
