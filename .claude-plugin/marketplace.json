@@ -1,0 +1,14 @@
+{
+  "name": "acme-tools",
+  "description": "Claude Code plugins for the Acme Supplies engineering team",
+  "owner": {
+    "name": "Acme Supplies Engineering"
+  },
+  "plugins": [
+    {
+      "name": "team-kit",
+      "source": "./team-kit",
+      "description": "Release notes, pull request review, tax regions, and hooks that guard secrets and the tax table"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "extraKnownMarketplaces": {
+    "acme-tools": {
+      "source": {
+        "source": "github",
+        "repo": "fairview2311/claude-code-skills-plugins-samples",
+        "ref": "solutions"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "team-kit@acme-tools": true
+  }
+}
