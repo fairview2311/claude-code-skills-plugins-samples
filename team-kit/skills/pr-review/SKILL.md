@@ -8,7 +8,7 @@ argument-hint: "[base-branch]"
 arguments: [base]
 allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/pr-facts.mjs *)
 context: fork
-agent: reviewer
+agent: team-kit:reviewer
 ---
 
 ## Facts about this branch

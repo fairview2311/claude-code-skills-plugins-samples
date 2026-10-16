@@ -9,6 +9,9 @@ const path = (args.file_path ?? args.path ?? '').replaceAll('\\', '/');
 const glob = args.glob ?? '';
 const command = args.command ?? '';
 
+const finance =
+  process.env.CLAUDE_PLUGIN_OPTION_FINANCE_CONTACT || 'the Finance team';
+
 function decide(decision, reason) {
   const hookSpecificOutput = {
     hookEventName: 'PreToolUse',
@@ -55,6 +58,6 @@ if (
 ) {
   decide(
     'ask',
-    'Finance owns config/tax-rates.json. Approve only if Finance agreed to this change.',
+    `Finance owns config/tax-rates.json. Approve only if ${finance} agreed to this change.`,
   );
 }

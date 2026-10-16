@@ -1,0 +1,14 @@
+{
+  "name": "team-kit",
+  "description": "Acme Supplies team rules for Claude Code: release notes, pull request review, tax regions, and hooks that guard secrets and the tax table.",
+  "version": "0.1.0",
+  "author": { "name": "Acme Supplies Engineering" },
+  "userConfig": {
+    "finance_contact": {
+      "type": "string",
+      "title": "Finance contact",
+      "description": "Who approves changes to the tax table, such as a name or a team channel.",
+      "default": "the Finance team"
+    }
+  }
+}
