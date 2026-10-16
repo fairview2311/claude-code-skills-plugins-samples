@@ -23,9 +23,3 @@ Small invoicing API for Acme Supplies Inc. TypeScript, Express 4, Vitest, Node 2
 
 - ALWAYS run `npm run format` and `npm test` after you edit a file in `src/`.
 - Do not say you are done while tests are failing.
-
-## Adding a tax region
-
-When I ask to add a tax region, add it to `config/tax-rates.json` with the
-rate as a decimal, add a test in `test/invoices.test.ts`, and remind me to get
-Finance to approve it.
