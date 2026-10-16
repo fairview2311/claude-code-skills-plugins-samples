@@ -24,15 +24,6 @@ Small invoicing API for Acme Supplies Inc. TypeScript, Express 4, Vitest, Node 2
 - ALWAYS run `npm run format` and `npm test` after you edit a file in `src/`.
 - Do not say you are done while tests are failing.
 
-## Writing release notes
-
-When I ask for release notes:
-1. Read the newest version in `CHANGELOG.md`.
-2. Write a short note for customers, not developers. No file names, no function names.
-3. Group the note into "New", "Improved", and "Fixed".
-4. Keep it under 120 words. Use plain American English.
-5. End with: "Questions? Contact support@example.com."
-
 ## Reviewing a pull request
 
 When I ask you to review a PR, go through this checklist:
