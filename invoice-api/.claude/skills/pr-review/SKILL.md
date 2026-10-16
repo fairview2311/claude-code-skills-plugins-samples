@@ -7,6 +7,8 @@ when_to_use: For example "review this PR", "look over my branch
 argument-hint: "[base-branch]"
 arguments: [base]
 allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/pr-facts.mjs *)
+context: fork
+agent: reviewer
 ---
 
 ## Facts about this branch
