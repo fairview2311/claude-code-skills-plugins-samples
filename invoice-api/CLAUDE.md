@@ -24,16 +24,6 @@ Small invoicing API for Acme Supplies Inc. TypeScript, Express 4, Vitest, Node 2
 - ALWAYS run `npm run format` and `npm test` after you edit a file in `src/`.
 - Do not say you are done while tests are failing.
 
-## Reviewing a pull request
-
-When I ask you to review a PR, go through this checklist:
-- Does every new route validate its input and return 400 on bad input?
-- Is money handled in integer cents everywhere?
-- Is there a test for the new behavior, including one failure case?
-- Do error responses use `{ "error": "..." }` or `{ "errors": [...] }`?
-- Did the PR change `config/tax-rates.json`? If yes, flag it for Finance.
-Report findings as a list grouped by "Must fix", "Should fix", and "Nice to have".
-
 ## Adding a tax region
 
 When I ask to add a tax region, add it to `config/tax-rates.json` with the
